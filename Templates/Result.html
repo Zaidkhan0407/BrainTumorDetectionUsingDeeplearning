@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        .not-mri-image {
+            color: red;
+        }
+        .mri-image {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Result</h1>
+    <p>
+        <span id="result-text">Result: </span>
+        <span id="result-value">{{ result }}</span>
+    </p>
+    <p>
+        <span id="symmetry-score-text">Symmetry Score: </span>
+        <span id="symmetry-score-value">{{ symmetry_score }}</span>
+    </p>
+    <script>
+        // Add JavaScript to change the color of the result text
+        document.addEventListener('DOMContentLoaded', function () {
+            var resultElement = document.getElementById('result-value');
+            var symmetryScoreElement = document.getElementById('symmetry-score-value');
+
+            if (resultElement.innerText === 'Not an MRI Image') {
+                document.getElementById('result-text').className = 'not-mri-image';
+            } else {
+                document.getElementById('result-text').className = 'mri-image';
+                symmetryScoreElement.innerText += ' (' + ((symmetryScoreElement.innerText.split(' ')[1] / 1000).toFixed(2)) + 'k)';
+            }
+        });
+    </script>
+</body>
+</html>
